@@ -536,4 +536,31 @@ public class DateUtils {
       String dateString = formatter.format(currentTime);
       return dateString;
    }
+	
+     /**
+      * @Author fubj
+      * @Description 获取10分钟之前的时间
+      * @Return return_type
+      */
+     public static String getDateBeforeMinute() {
+           SimpleDateFormat df = new SimpleDateFormat(DATE_TIME_PATTERN);
+           Calendar beforeCalender = Calendar.getInstance();
+           beforeCalender.add(Calendar.MINUTE, -10); //10分钟之前的时间
+           Date beforeTime = beforeCalender.getTime();
+           return df.format(beforeTime);
+     }
+
+     /**
+      * @Author fubj
+      * @Description 比较输入日期和当前10分钟之前时间的大小
+      * @Return boolean
+      */
+     public static boolean timeCompare(String date){
+           String date2 = getDateBeforeMinute();//10分钟之前的时间
+           Integer result = date2.compareTo(date);
+           if(result > 0){
+                return true;
+           }
+           return false;
+     }	
 }
